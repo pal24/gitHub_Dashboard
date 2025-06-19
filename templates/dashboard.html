@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>GitHub Actions Dashboard</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .repo { margin-bottom: 30px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>GitHub Deploy Workflow Dashboard</h1>
+    {% for result in results %}
+        <div class="repo">
+            <h2>{{ result.repo }}</h2>
+            {% if result.error %}
+                <p class="error">{{ result.error }}</p>
+            {% else %}
+                <p><strong>Status:</strong> {{ result.status }}</p>
+                <p><strong>Conclusion:</strong> {{ result.conclusion }}</p>
+                <p><strong>Triggered At:</strong> {{ result.timestamp }}</p>
+                <p><strong>Commit Message:</strong> {{ result.commit_message }}</p>
+                <p><strong>Triggered By:</strong> {{ result.triggered_by }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</body>
+</html>
